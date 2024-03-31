@@ -4,18 +4,25 @@ import org.openqa.selenium.WebDriver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import praktikum.pages.MainPage;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class FaqTest {
     private final int id;
     private final String result;
+    private static MainPage mainPage;
     public FaqTest(int id, String result) {
         this.id = id;
         this.result= result;
     }
+
+    @Rule
+    public DriverRule driverRule = new DriverRule();
 
     @Parameterized.Parameters
     public static Object[][] getCredentials() {
@@ -30,25 +37,24 @@ public class FaqTest {
                 { 7, "Да, обязательно. Всем самокатов! И Москве, и Московской области."}
         };
     }
-    private DriverRule driverRule=new DriverRule();
-
     @Before
-    public void initDriver() {
-        driverRule.initDriver();
+    public void init() {
+        mainPage = new MainPage(driverRule.getDriver());
+        mainPage.open();
     }
 
     @Test
     public void checkActivity() {
         WebDriver driver=driverRule.getDriver();
 
-        MainPage main=new MainPage(driver);
+        //MainPage main=new MainPage(driver);
         //открытие страницы
-        main.open();
-        main.checkList(id,result);
+        //main.open();
+        mainPage.checkList(id,result);
     }
 
-    @After
-    public void killDriver(){
-        driverRule.getDriver().quit();
-    }
+    //@After
+    //public void killDriver(){
+     //   driverRule.getDriver().quit();
+   // }
 }

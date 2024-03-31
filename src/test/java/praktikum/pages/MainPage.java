@@ -14,10 +14,12 @@ public class MainPage {
     private final WebDriver driver;
     private final By buttonOrderTwo = By.cssSelector(".Button_Middle__1CSJM");
     private final By buttonOrderOne = By.className("Button_Button__ra12g");
+    private final By cookieButton = By.id("rcc-confirm-button");  // Для закрытия окна с куки
     private By accordionPanel;
     private By accordionHeading;
 
     public MainPage (WebDriver driver){
+
         this.driver=driver;
     }
 
@@ -28,11 +30,16 @@ public class MainPage {
     }
 
     public void clickOrder() {
+
         driver.findElement(buttonOrderOne).click();
     }
 
     public void open() {
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        //driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(EnvConfig.BASE_URL);
+        driver.manage().window().maximize();
+        driver.findElement(cookieButton).click();  // Закрыть окно с куки
+
     }
 
     public void checkList(int id, String result) {

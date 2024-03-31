@@ -1,13 +1,23 @@
 package test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.rules.ExternalResource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class DriverRule {
+public class DriverRule extends ExternalResource {
     private WebDriver driver;
+    @Override
+    protected void before() throws Throwable {
+        initDriver();
+    }
+
+    @Override
+    protected void after() {
+        driver.quit();
+    }
     public void initDriver() {
         if ("firefox".equals(System.getProperty("browser"))) {
             initFirefox();
