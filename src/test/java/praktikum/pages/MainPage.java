@@ -35,7 +35,6 @@ public class MainPage {
     }
 
     public void open() {
-        //driver.get("https://qa-scooter.praktikum-services.ru/");
         driver.get(EnvConfig.BASE_URL);
         driver.manage().window().maximize();
         driver.findElement(cookieButton).click();  // Закрыть окно с куки

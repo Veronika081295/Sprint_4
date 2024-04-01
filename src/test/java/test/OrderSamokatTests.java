@@ -56,7 +56,7 @@ public class OrderSamokatTests {
         mainPage.open();
     }
     @Test
-    public void testOrderHeaderButton() {
+    public void testOrderScooter() {
         OrderPage objOrderPage = new OrderPage(driverRule.getDriver());
         RentPage objRentPage = new RentPage(driverRule.getDriver());
         objOrderPage.createOrder(

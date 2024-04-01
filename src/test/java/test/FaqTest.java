@@ -1,15 +1,12 @@
 package test;
 
 import org.openqa.selenium.WebDriver;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import praktikum.pages.MainPage;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class FaqTest {
@@ -46,15 +43,6 @@ public class FaqTest {
     @Test
     public void checkActivity() {
         WebDriver driver=driverRule.getDriver();
-
-        //MainPage main=new MainPage(driver);
-        //открытие страницы
-        //main.open();
         mainPage.checkList(id,result);
     }
-
-    //@After
-    //public void killDriver(){
-     //   driverRule.getDriver().quit();
-   // }
 }
